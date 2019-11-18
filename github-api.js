@@ -18,35 +18,24 @@ let owner = document.getElementById("owner").value;
 let repository = document.getElementById("repository").value;
 let url = new BuildUrl(owner, repository);
 
-function validation(owner) {
-    if (typeof owner === !'string') {
-        throw new Error("Must be String")
-    }
-}
-
-function myFunction() {
-
-    validation(owner, repository);
-
+function connect() {
     fetch(url.getUrl())
         .then(resp => {
-            if (resp.ok) {
-                console.log("ok");
+            if (resp.status === HttpCodes.success) {
                 return resp.json();
             } else {
                 return Promise.reject(resp);
             }
         })
         .then(data => {
-            data.forEach(data => {
-                document.getElementById("stars").innerHTML = data.watchers;
-            })
-                .catch(error => {
-                    if (error.status === HttpCodes.notFound) {
-                        console.log("The server can not find requested resource: " + error.status);
-                    }
-                });
+            document.getElementById("stars").innerHTML = data.watchers;
         })
+        .catch(error => {
+            if (error.status === HttpCodes.notFound) {
+                let notFound = "The server can not find requested resource";
+                document.getElementById("stars").innerHTML = notFound + error.status;
+            }
+        });
 }
 
 
