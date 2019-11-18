@@ -6,14 +6,15 @@
     <link href="index.css" rel="stylesheet">
 </head>
 <body>
-
-
-<button type="button" onclick="myFunction()">Submit</button>
-<input id="owner">
-<input id="repository">
-<p id="stars"></p>
-
-
+<form>
+    <p id="stars">Stars</p>
+    <input id="owner" type="text" name="owner" >
+    <input id="repository" type="text" name="repository">
+    <button type="button" id="button" onclick="connect()">Search</button>
+</form>
+<p id="deal"></p>
+<div class="background">
+</div>
 <script src="github-api.js"></script>
 </body>
 </html>

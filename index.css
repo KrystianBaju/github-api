@@ -1,0 +1,58 @@
+body {
+    font-family: Roboto, serif;
+    background-color: whitesmoke;
+}
+.background{
+    height: 40vh;
+    background-color: peachpuff;
+}
+form {
+    background-color: tan;
+    padding: 30px;
+    border: 1px red;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+}
+
+#stars {
+    padding: 3px;
+    font-family: Roboto, serif;
+    color: darkorchid;
+    font-size: 30px;
+    border: 1px red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    background-color: darkorchid;
+    border: none;
+    color: white;
+    padding: 9px 16px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 4px;
+}
+#deal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#deal::after{
+    content: url("https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2018/03/GitHub-brave-hed-796x418.jpg");
+}
+input{
+    border-radius: 4px;
+}
+input[type="text"] {
+    font-family: Roboto, serif
+}
+
