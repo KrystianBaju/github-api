@@ -3,11 +3,6 @@ function BuildUrl(owner, repository) {
     this.repository = repository;
 }
 
-const HttpCodes = {
-    success: 200,
-    notFound: 404
-};
-
 BuildUrl.prototype.getUrl = function () {
     const slash = "/";
     const url = "https://api.github.com/repos";
@@ -16,28 +11,17 @@ BuildUrl.prototype.getUrl = function () {
 
 let owner = document.getElementById("owner").value;
 let repository = document.getElementById("repository").value;
+const button = document.querySelector("#button-post");
 let url = new BuildUrl(owner, repository);
 
-function connect() {
-    fetch(url.getUrl())
-        .then(resp => {
-            if (resp.status === HttpCodes.success) {
-                return resp.json();
-            } else {
-                return Promise.reject(resp);
-            }
-        })
-        .then(data => {
-            document.getElementById("stars").innerHTML = data.watchers;
-        })
+function gitHubApi(url) {
+    return fetch(url.getUrl()).then(resp => resp.json())
         .catch(error => {
-            if (error.status === HttpCodes.notFound) {
-                let notFound = "The server can not find requested resource";
-                document.getElementById("stars").innerHTML = notFound + error.status;
-            }
-        });
+            let notFound = "The server can not find requested resource";
+            document.getElementById("stars").innerHTML = notFound + error.status;
+        })
 }
 
-
-
-
+button.addEventListener("click", function () {
+    gitHubApi(url).then(response => document.getElementById("stars").innerHTML = response.watchers);
+});
